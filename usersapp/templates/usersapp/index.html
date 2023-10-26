@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'usersapp/base.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block content %}
+    {% if posts %}
+    <h1>Последние объявления</h1>
+    <hr>
+    {% for post in posts %}
+    <div>{{ post }}
+        <ul>
+            <li><a href="{% url 'usersapp:post' post.id %}">{{ post.title }}</a></li>
+            <li>Описание товара: {{ post.description }}</li>
+            <li>Категория товара: {{ post.category }}</li>
+        </ul>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h1>Объявлений нет</h1>
+    {% endif %}
+{% endblock %}
